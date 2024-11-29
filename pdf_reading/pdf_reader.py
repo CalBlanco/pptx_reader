@@ -1,7 +1,15 @@
 from pypdf import PdfReader
 import os
 
-def get_text_from_pdf(pdf_file:str):
+def get_text_from_pdf(pdf_file:str)->list[tuple[str, int, str]]:
+    """Extract text information from a pdf file
+    
+    *Args*:
+        pdf_file<str>: The pdf we want to get text info from
+
+    *Returns*:
+        a List of tuples of the shape (file_name, page_number, text)
+    """
     file_name = os.path.basename(pdf_file)
 
     reader = PdfReader(pdf_file)

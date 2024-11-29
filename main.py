@@ -7,7 +7,7 @@ import curses
 from tqdm import tqdm
 
 QUERY_COLOR = curses.COLOR_CYAN 
-QUERY_HIGHLIGHT = curses.COLOR_BLACK #make this another color to enable highlighting
+QUERY_HIGHLIGHT = curses.COLOR_WHITE #make this another color to enable highlighting
 
 path = lambda x: os.path.join(os.path.dirname(__file__), x) #lambda path bc its fun 
 

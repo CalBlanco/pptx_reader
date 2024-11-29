@@ -4,7 +4,6 @@ DEFAULT_DB_NAME = "searchable"
 
 
 def init_db(db_name=DEFAULT_DB_NAME):
-    print(db_name, "Being Created")
     """
     Initialize the database with a normal table and an associated FTS5 table.
     Ensures `file_name` is unique across the normal table.
@@ -88,7 +87,6 @@ def add_to_db(data, db_name=DEFAULT_DB_NAME):
 
 
 def search_db(query, db_name=DEFAULT_DB_NAME):
-    print(db_name)
     """
     Search the database using the FTS5 table.
     Parameters:
