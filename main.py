@@ -51,12 +51,10 @@ def paginate_results(stdscr, results, search_string):
             for i, line in enumerate(lines[:height-4]):  # Leave space for header and navigation
                 line = line.replace('\x00', '')  # Remove null bytes
                 if line.lower().find(search_string) !=-1:
-                    stdscr.addstr(i+5, 0, line, highlight)  # 3 is where text starts
-                    stdscr.addstr(i+6, 0, '\n')
+                    stdscr.addstr(i+3, 0, line, highlight)  # 3 is where text starts
                     
                     continue
-                stdscr.addstr(i+5, 0, line)
-                stdscr.addstr(i+6, 0, ' ')
+                stdscr.addstr(i+3, 0, line)
 
                 stdscr.refresh()
 
@@ -85,10 +83,10 @@ def paginate_results(stdscr, results, search_string):
 def main(args):
 
     db_path = path(f'dbs/{args.database}')
-    print(db_path)
+    
     
     if args.dir: #add new files to a db
-        print(args.dir, db_path)
+        
 
         init_db(db_path)
 
@@ -112,8 +110,11 @@ def main(args):
 
         results = search_db(args.search, db_path)
 
+        if results is None or len(results) == 0 :
         #paginate_results(stdscr, results, args.search)
-        curses.wrapper(paginate_results, results, args.search)
+            print(f"No results for {args.search} in {db_path}.db")
+        else:
+            curses.wrapper(paginate_results, results, args.search)
 
 if __name__ == '__main__':
 
@@ -121,7 +122,7 @@ if __name__ == '__main__':
         os.mkdir(path('dbs'))
         print('Created db folder')
     except:
-        print('Database folder exists')
+        pass
 
     parser = argparse.ArgumentParser(description='Utility for quickly searching across pptx files')
     parser.add_argument('-r', '--dir', help='Directory to find pptx files from [ONLY USE FOR ADDING NEW ITEMS]')
@@ -129,7 +130,7 @@ if __name__ == '__main__':
     parser.add_argument('-db', '--database', help='Database do not include .db(if new will create new database)', default=DEFAULT_DB_NAME)
     args = parser.parse_args()
 
-    #print(args)
+    
     main(args)
 
 
