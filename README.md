@@ -6,6 +6,15 @@ A utility script that can load in numerous pptx, and pdf files. Extracts the tex
 
 Allows for querying over the db finding page and slides that contain the query.
 
+## Video Usage
+
+
+https://github.com/user-attachments/assets/3c7818c0-871e-41d0-ad21-c91fdea34e62
+
+> these functions should work for everyone as these are the dbs that come with the repo. Feel free to reach out if these don't work
+
+
+
 ## Installation
 
 *built in python 3.11, but will hopefully work in 3 generally*
