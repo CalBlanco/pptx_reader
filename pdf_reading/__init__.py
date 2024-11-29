@@ -1,0 +1,1 @@
+from .pdf_reader import get_text_from_pdf

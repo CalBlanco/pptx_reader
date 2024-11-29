@@ -1,0 +1,1 @@
+from .pptx_reader import get_text_from_pptx

@@ -1,0 +1,5 @@
+[?1049h[1;25r(B[m[4l[?7h[?1h=[39;49m[?1l>[39;49m[25;1H[K[25;1H[?1049l[?1l>Created db folder
+Namespace(dir='./201', search=None, database='202')
+/Users/carl/dev/misc/pptx_searcher/dbs/202
+./201 /Users/carl/dev/misc/pptx_searcher/dbs/202
+/Users/carl/dev/misc/pptx_searcher/dbs/202 Being Created
