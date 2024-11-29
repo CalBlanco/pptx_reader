@@ -34,6 +34,7 @@ install dependencies: `pip install -r requirements.txt`
 `-db` or `--database`: Name the database, will create a db file in the `./dbs/` directory if one doesnt exist, otherwise will load the database from this location
 
 `-s` or `--search`: the search you would like to perform
+> You can search for longer queries by wrapping the argument in quotes i.e `python main.py -s "query with spaces in it"`
 
 ### How to utilize
 1. Load in data with using the `-r` and `-db` arguments. `python main.py -r <location of files> -db <desired name>` if no name is provided it will default to `searchable.db`
