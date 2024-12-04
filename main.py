@@ -91,7 +91,7 @@ def list_results(stdscr, results, search_string, db, j):
         # Debugging info
         #stdscr.addstr(height - 1, 0, f"DEBUG: current_result={current_result}, page={page}, page_range=({bot},{top})", curses.A_BOLD)
 
-        stdscr.addstr(0, 10,f'Results for "{search_string}" in {db}', curses.A_BOLD)
+        stdscr.addstr(0, 10,f'Results for "{search_string}" in {db}     Page: {page+1}/{round(num_results/page_size)}', curses.A_BOLD)
         # Display results
         for i, res in enumerate(subset):
             file_name, page_num, _ = res
@@ -101,7 +101,8 @@ def list_results(stdscr, results, search_string, db, j):
                 stdscr.addstr(2+i, 0, f"{bot + i +1}. {file_name} -- Page: {page_num}")
 
         # Navigation info
-        stdscr.addstr(height - 2, 0, "Use 's' to go down, 'w' to go up. 'e' to view, and 'q' to quit.", curses.A_BOLD)
+        stdscr.addstr(height - 2, 0, "Use 's' to go down one, 'w' to go up one. 'j' to go down a page, and 'k' to go up a page. 'e' to view.", curses.A_BOLD)
+        stdscr.addstr(height - 1, 0, "'q' to quit.", curses.A_BOLD)
         stdscr.refresh()
 
         # Key handling
@@ -110,25 +111,33 @@ def list_results(stdscr, results, search_string, db, j):
             # Move down
             stdscr.refresh()
             current_result += 1
-            if current_result >= num_results:  # Wrap to the first result
-                current_result = 0
-                page = 0
-            elif current_result >= (page + 1) * page_size:  # Next page
-                page += 1
         elif key == ord('w'):
             # Move up
             stdscr.refresh()
             current_result -= 1
-            if current_result < 0:  # Wrap to the last result
-                current_result = num_results - 1
-                page = current_result // page_size
-            elif current_result < page * page_size:  # Previous page
-                page -= 1
         elif key == ord('q'):
             return
         elif key == ord('e'):
             curses.curs_set(1)
             return show_result(stdscr, results, search_string, db, current_result)
+        elif key == ord('j'):
+            current_result += page_size
+        elif key == ord('k'):
+            current_result -= page_size
+        else:
+            continue
+
+        if current_result < 0:  # Wrap to the last result
+            current_result = num_results - 1
+            page = current_result // page_size
+        elif current_result < page * page_size:  # Previous page
+            page -= 1
+
+        if current_result >= num_results:  # Wrap to the first result
+            current_result = 0
+            page = 0
+        elif current_result >= (page + 1) * page_size:  # Next page
+            page += 1
 
 
 def main(args):
@@ -183,11 +192,3 @@ if __name__ == '__main__':
 
     
     main(args)
-
-
-
-
-
-
-    
-
