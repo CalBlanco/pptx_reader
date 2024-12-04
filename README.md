@@ -36,6 +36,12 @@ install dependencies: `pip install -r requirements.txt`
 `-s` or `--search`: the search you would like to perform
 > You can search for longer queries by wrapping the argument in quotes i.e `python main.py -s "query with spaces in it"`
 
+### Navigating Results
+- `w` will move the result cursor up
+- `s` will move the cursor down
+- `e` will enter a result showing you the result text (press `q` to back out of this screen when in it)
+- `q` will exit the program
+
 ### How to utilize
 1. Load in data with using the `-r` and `-db` arguments. `python main.py -r <location of files> -db <desired name>` if no name is provided it will default to `searchable.db`
 2. Query over db with `-s`. `python main.py -s "bayes"` (will query `searchable.db`) specify the db to search with the `-db` arg
@@ -47,7 +53,8 @@ to help out I already have added all the lecture slides into respective database
 1. `-db 201` will search for text found in 201 slides
 2. `-db 220` will search for text found in 220 slides
 3. `-db 243` will search for text found in 243 slides
-4. No db argument will default to `searchable.db` which contains all class material from all classes
+4. `-db jur` will search text found in Jurafsky Stanford Slides
+5. No db argument will default to `searchable.db` which contains all class material from all classes
 
 So if I wanted to perform a search for the word 'bayes' in 201 I would type `python main.py -s bayes -db 201`
 

@@ -2,3 +2,5 @@
 .DS_STORE
 venv/
 in_data/
+
+*.ipynb
